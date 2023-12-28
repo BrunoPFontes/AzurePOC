@@ -31,7 +31,8 @@ steps:
   displayName: 'Install dependencies'
 
 - powershell: |
-    robot OpenGoogle.robot
+    # Run Robot Framework tests
+    & "${env:USERPROFILE}\.dotnet\tools\robot.exe" your_test_script.robot
   displayName: 'Run Robot Framework script'
   
 - task: PublishTestResults@2
