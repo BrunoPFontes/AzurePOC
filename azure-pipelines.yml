@@ -30,8 +30,9 @@ steps:
 - powershell: |
     # Display the path where Git cloned the repository
       Write-Host "Repository is cloned at: $env:BUILD_SOURCESDIRECTORY"
+      Write-Host: 'kubectl'
     # Run Robot Framework tests
-    & "${env:BUILD_SOURCESDIRECTORY}\OpenGoogle.robot"
+    & "robot ${env:BUILD_SOURCESDIRECTORY}\OpenGoogle.robot"
   displayName: 'Run Robot Framework script'
   
 - task: PublishTestResults@2
