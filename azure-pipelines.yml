@@ -32,5 +32,5 @@ steps:
   displayName: 'pytest'
 
 - powershell: |
-    robot --pythonpath . -x outputxunit.xml OpenGoogle.robot
+    robot --pythonpath . OpenGoogle.robot
   displayName: 'Run Robot Script'
