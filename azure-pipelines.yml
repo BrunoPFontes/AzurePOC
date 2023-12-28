@@ -32,7 +32,7 @@ steps:
       Write-Host "Repository is cloned at: $env:BUILD_SOURCESDIRECTORY"
       Write-Host: 'kubectl'
     # Run Robot Framework tests
-    & "robot ${env:BUILD_SOURCESDIRECTORY}\OpenGoogle.robot"
+    robot D:\a\1\s\OpenGoogle.robot"
   displayName: 'Run Robot Framework script'
   
 - task: PublishTestResults@2
