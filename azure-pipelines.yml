@@ -26,7 +26,7 @@ steps:
     pip install chromedriver-py
   displayName: 'Install dependencies'
 
-- powershell: robot --pythonpath . -x outputxunit.xml OpenGoogle.robot
+- powershell: robot --pythonpath OpenGoogle.robot
   displayName: 'Run Robot Scripts'
 - task: PublishTestResults@2
   inputs:
