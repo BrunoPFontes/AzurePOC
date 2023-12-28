@@ -32,7 +32,7 @@ steps:
 
 - powershell: |
     # Run Robot Framework tests
-    & "${env:USERPROFILE}\.dotnet\tools\robot.exe" your_test_script.robot
+    & "${env:USERPROFILE}\AppData\Roaming\Python\Python312\Scripts" your_test_script.robot
   displayName: 'Run Robot Framework script'
   
 - task: PublishTestResults@2
