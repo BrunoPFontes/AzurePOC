@@ -41,7 +41,14 @@ steps:
   
 - task: PublishTestResults@2
   inputs:
-    testResultsFormat: 'JUnit'
-    testResultsFiles: '**/output.xml'
+    testResultsFiles: '$(System.DefaultWorkingDirectory)\TestResults\output.xml'
+    testRunTitle: 'Robot Framework Tests'
+    testRunSystem: 'Robot Framework'
     failTaskOnFailedTests: true
-  displayName: 'Publish Test Results'
+
+- task: PublishBuildArtifacts@1
+  inputs:
+    pathtoPublish: '$(System.DefaultWorkingDirectory)\TestResults'
+    artifactName: 'RobotFrameworkResults'
+    publishLocation: 'Container'
+  condition: succeededOrFailed()  # This ensures that the artifact is published even if the tests fail
