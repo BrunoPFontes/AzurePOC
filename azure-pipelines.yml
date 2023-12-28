@@ -33,7 +33,6 @@ steps:
 - powershell: |
     # Display the path where Git cloned the repository
       Write-Host "Repository is cloned at: $env:BUILD_SOURCESDIRECTORY"
-      Write-Host: 'kubectl'
       echo $(System.DefaultWorkingDirectory)
       dir $(System.DefaultWorkingDirectory)
     # Run Robot Framework tests
