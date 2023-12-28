@@ -10,11 +10,11 @@ jobs:
 
 - job: 'Test'
   pool:
-    vmImage: 'vs2022-win2023
-strategy:
-  matrix:
-    Python312:
-    python.version: '3.12.1'
+    vmImage: 'vs2017-win2016'
+  strategy:
+    matrix:
+      Python312:
+        python.version: '3.12.1'
     maxParallel: 1
 
   steps:
@@ -23,17 +23,17 @@ strategy:
       versionSpec: '$(python.version)'
       architecture: 'x64'
 
-- script: |
+- script:|
     python -m pip install --upgrade pip
     pip install robotframework-seleniumlibrary
     pip install chromedriver-py
   displayName: 'Install dependencies'
-  
-  - powershell: robot --pythonpath . -x outputxunit.xml OpenGoogle.robot
-    displayName: 'Run Robot Scripts'
-  - task: PublishTestResults@2
-    inputs:
-      testResultsFiles: outputxunit.xml
-      searchFolder: 'D:\a\1\s\'
-      condition: succeededOrFailed()
-      displayName: 'Publish Test Results outputxunit.xml'
+
+- powershell: robot --pythonpath . -x outputxunit.xml OpenGoogle.robot
+  displayName: 'Run Robot Scripts'
+- task: PublishTestResults@2
+  inputs:
+    testResultsFiles: outputxunit.xml
+    searchFolder: 'D:\a\1\s\'
+    condition: succeededOrFailed()
+    displayName: 'Publish Test Results outputxunit.xml'
