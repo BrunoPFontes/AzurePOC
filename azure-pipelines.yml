@@ -15,6 +15,7 @@ strategy:
   maxParallel: 1
 
 steps:
+- checkout: self
 - task: UsePythonVersion@0
   inputs:
     versionSpec: '$(python.version)'
@@ -25,14 +26,18 @@ steps:
     pip install robotframework
     pip install robotframework-seleniumlibrary
     pip install chromedriver-py
+    echo $(System.DefaultWorkingDirectory)
+    dir $(System.DefaultWorkingDirectory)
   displayName: 'Install dependencies'
 
 - powershell: |
     # Display the path where Git cloned the repository
       Write-Host "Repository is cloned at: $env:BUILD_SOURCESDIRECTORY"
       Write-Host: 'kubectl'
+      echo $(System.DefaultWorkingDirectory)
+      dir $(System.DefaultWorkingDirectory)
     # Run Robot Framework tests
-    robot D:\a\1\s\OpenGoogle.robot"
+    "robot $(System.DefaultWorkingDirectory)D:\a\1\s\OpenGoogle.robot"
   displayName: 'Run Robot Framework script'
   
 - task: PublishTestResults@2
