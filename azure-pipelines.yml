@@ -21,9 +21,6 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    # Install Robot Framework
-    choco install python
-    refreshenv
     python -m pip install --upgrade pip
     pip install robotframework
     pip install robotframework-seleniumlibrary
@@ -31,8 +28,10 @@ steps:
   displayName: 'Install dependencies'
 
 - powershell: |
+    # Display the path where Git cloned the repository
+      Write-Host "Repository is cloned at: $env:BUILD_SOURCESDIRECTORY"
     # Run Robot Framework tests
-    & "${env:USERPROFILE}\AppData\Roaming\Python\Python312\Scripts" your_test_script.robot
+    & "${env:BUILD_SOURCESDIRECTORY}\OpenGoogle.robot"
   displayName: 'Run Robot Framework script'
   
 - task: PublishTestResults@2
