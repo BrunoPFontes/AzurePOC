@@ -7,7 +7,7 @@ trigger:
 - main
 
 pool:
-  vmImage: ubuntu-latest
+  vmImage: windows-latest
 strategy:
   matrix:
     Python312:
@@ -21,14 +21,22 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
+    # Install Robot Framework
+    choco install python
+    refreshenv
     python -m pip install --upgrade pip
-    pip install pyyaml
-    pip install pytest pytest-azurepipelines
-    pytest    
+    pip install robotframework
     pip install robotframework-seleniumlibrary
     pip install chromedriver-py
   displayName: 'Install dependencies'
 
-- script: |
+- powershell: |
     robot OpenGoogle.robot
   displayName: 'Run Robot Framework script'
+  
+- task: PublishTestResults@2
+  inputs:
+    testResultsFormat: 'JUnit'
+    testResultsFiles: '**/output.xml'
+    failTaskOnFailedTests: true
+  displayName: 'Publish Test Results'
