@@ -36,7 +36,7 @@ steps:
       echo $(System.DefaultWorkingDirectory)
       dir $(System.DefaultWorkingDirectory)
     # Run Robot Framework tests
-    "robot $(System.DefaultWorkingDirectory)D:\a\1\s\OpenGoogle.robot"
+    "robot $(System.DefaultWorkingDirectory)OpenGoogle.robot"
   displayName: 'Run Robot Framework script'
   
 - task: PublishTestResults@2
