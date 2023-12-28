@@ -30,5 +30,5 @@ steps:
   displayName: 'Install dependencies'
 
 - script: |
-    OpenGoogle.robot
+    robot OpenGoogle.robot
   displayName: 'Run Robot Framework script'
