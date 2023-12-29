@@ -38,7 +38,7 @@ steps:
       echo $(System.DefaultWorkingDirectory)
       dir $(System.DefaultWorkingDirectory)
     # Run Robot Framework tests
-    robot  --xunit output.xml $(System.DefaultWorkingDirectory)\OpenGoogle.robot
+    robot  --xunit output.xml $(System.DefaultWorkingDirectory)/OpenGoogle.robot
   displayName: 'Run Robot Framework script'
 
 - task: PublishTestResults@2
