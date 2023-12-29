@@ -39,19 +39,14 @@ steps:
     robot $(System.DefaultWorkingDirectory)\OpenGoogle.robot
   displayName: 'Run Robot Framework script'
 
-- task: PublishTestResults@3
-  inputs:
-  testResultsFiles: outputxunit.xml
-  searchFolder: 'D:\a\1\s\'
-  condition: succeededOrFailed()
-  displayName: 'Publish Test Results outputxunit.xml'
-
 - task: PublishTestResults@2
   inputs:
-    testResultsFiles: '$(System.DefaultWorkingDirectory)\TestResults\output.xml'
+    testResultsFiles: '$(System.DefaultWorkingDirectory)\outputxunit.xml'
     testRunTitle: 'Robot Framework Tests'
-    testRunSystem: 'Robot Framework'
     failTaskOnFailedTests: true
+    searchFolder: '$(System.DefaultWorkingDirectory)'
+  condition: succeededOrFailed()
+  displayName: 'Publish Test Results outputxunit.xml'
 
 - task: PublishBuildArtifacts@1
   inputs:
