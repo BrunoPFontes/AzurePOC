@@ -26,6 +26,8 @@ steps:
     pip install robotframework
     pip install robotframework-seleniumlibrary
     pip install chromedriver-py
+    pip install pytest pytest-azurepipelines
+    pip install pytest-cov
     echo $(System.DefaultWorkingDirectory)
     dir $(System.DefaultWorkingDirectory)
   displayName: 'Install dependencies'
@@ -39,20 +41,15 @@ steps:
     robot $(System.DefaultWorkingDirectory)\OpenGoogle.robot
   displayName: 'Run Robot Framework script'
 
+- script: |
+    pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml
+  displayName: 'pytest'
+
 - task: PublishTestResults@2
   inputs:
-    testResultsFiles: '$(System.DefaultWorkingDirectory)\outputxunit.xml'
-    testRunTitle: 'Robot Framework Tests'
-    failTaskOnFailedTests: true
-    searchFolder: '$(System.DefaultWorkingDirectory)'
-  condition: succeededOrFailed()
-  displayName: 'Publish Test Results outputxunit.xml'
-
-- task: PublishBuildArtifacts@1
-  inputs:
-    pathtoPublish: '$(System.DefaultWorkingDirectory)\report.html'
-    artifactName: 'RobotFrameworkResults'
-    publishLocation: 'Container'
-  condition: succeededOrFailed()  # This ensures that the artifact is published even if the tests fail
+      testResultsFiles: '$(System.DefaultWorkingDirectory)\output.xml'
+      testRunTitle: 'Robot Framework Tests'
+      testRunSystem: 'Robot Framework'
+      failTaskOnFailedTests: true
 
 
