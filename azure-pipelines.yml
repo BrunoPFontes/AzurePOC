@@ -39,6 +39,13 @@ steps:
     robot $(System.DefaultWorkingDirectory)\OpenGoogle.robot
   displayName: 'Run Robot Framework script'
 
+- task: PublishTestResults@3
+  inputs:
+  testResultsFiles: outputxunit.xml
+  searchFolder: 'D:\a\1\s\'
+  condition: succeededOrFailed()
+  displayName: 'Publish Test Results outputxunit.xml'
+
 - task: PublishTestResults@2
   inputs:
     testResultsFiles: '$(System.DefaultWorkingDirectory)\TestResults\output.xml'
@@ -54,9 +61,3 @@ steps:
   condition: succeededOrFailed()  # This ensures that the artifact is published even if the tests fail
 
 
-- task: PublishTestResults@3
-  inputs:
-    testResultsFiles: outputxunit.xml
-    searchFolder: 'D:\a\1\s\'
-    condition: succeededOrFailed()
-    displayName: 'Publish Test Results outputxunit.xml'
