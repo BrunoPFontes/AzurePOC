@@ -28,7 +28,7 @@ steps:
     Invoke-WebRequest -Uri $url -OutFile $output
     Start-Process -Wait -FilePath msiexec -ArgumentList "/i $output /quiet /qn /norestart"
       Remove-Item -Path $output
-  isplayName: 'Install Google Chrome'
+    isplayName: 'Install Google Chrome'
 
 - script: |
     python -m pip install --upgrade pip
