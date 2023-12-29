@@ -38,12 +38,8 @@ steps:
       echo $(System.DefaultWorkingDirectory)
       dir $(System.DefaultWorkingDirectory)
     # Run Robot Framework tests
-    robot $(System.DefaultWorkingDirectory)\OpenGoogle.robot
+    robot  --xunit output.xml $(System.DefaultWorkingDirectory)\OpenGoogle.robot
   displayName: 'Run Robot Framework script'
-
-- script: |
-    pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml
-  displayName: 'pytest'
 
 - task: PublishTestResults@2
   inputs:
