@@ -1,0 +1,7 @@
+robotframework
+robotframework-seleniumlibrary
+chromedriver-py
+pytest pytest-azurepipelines
+pytest-cov
+echo $(System.DefaultWorkingDirectory)
+dir $(System.DefaultWorkingDirectory)
