@@ -22,15 +22,6 @@ steps:
   displayName: 'Use Python $(python.version)'
 
 - script: |
-    # Install Google Chrome
-    $url = 'https://dl.google.com/chrome/install/GoogleChromeStandaloneEnterprise64.msi'
-    $output = 'chrome_installer.msi'
-    Invoke-WebRequest -Uri $url -OutFile $output
-    Start-Process -Wait -FilePath msiexec -ArgumentList "/i $output /quiet /qn /norestart"
-      Remove-Item -Path $output
-    isplayName: 'Install Google Chrome'
-
-- script: |
     python -m pip install --upgrade pip
     pip install robotframework
     pip install robotframework-seleniumlibrary
@@ -47,7 +38,7 @@ steps:
       echo $(System.DefaultWorkingDirectory)
       dir $(System.DefaultWorkingDirectory)
     # Run Robot Framework tests
-    robot  --xunit output.xml $(System.DefaultWorkingDirectory)/OpenGoogle.robot
+    robot  --xunit output.xml $(System.DefaultWorkingDirectory)\OpenGoogle.robot
   displayName: 'Run Robot Framework script'
 
 - task: PublishTestResults@2
