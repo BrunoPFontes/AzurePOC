@@ -41,7 +41,7 @@ steps:
   displayName: 'Run Robot Framework script'
 
 - powershell: |
-    Write-Host $env:path
+    Write-Host "Printing the build source at: $env:path" 
     Write-Host "Printing the build source at:C:\hostedtoolcache\windows\Python"
     Get-ChildItem -Directory -Path "C:\hostedtoolcache\windows\Python" | ForEach-Object {
         Write-Host $_.Name
@@ -60,6 +60,7 @@ steps:
     Write-Host "Printing the build source at:C:\hostedtoolcache\windows\Python\3.12.1\x64\Scripts"
     Get-ChildItem -Directory -Path "C:\hostedtoolcache\windows\Python\3.12.1\x64" | ForEach-Object {
     Write-Host $_.Name
+    }
   displayName: 'List Folders'
 
 - script: |
