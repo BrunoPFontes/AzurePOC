@@ -24,15 +24,27 @@ steps:
 - powershell: |
     # Display the path where Git cloned the repository
       Write-Host "Repository is cloned at: $env:BUILD_SOURCESDIRECTORY"
-      Get-ChildItem C:\a\ recurse
+      Get-ChildItem D:\a\ recurse
       Write-Host $env:BUILD_SOURCESDIRECTORY
       echo "Listing contents of Agent.ToolsDirectory:"
       dir "$(Agent.ToolsDirectory)"
       echo $(System.DefaultWorkingDirectory)
       dir $(System.DefaultWorkingDirectory)
+      echo "Found tool in cache: Python $(PythonVersion) $(Architecture)"
+      echo "Prepending PATH environment variable with directory: $(Agent.ToolsDirectory)\python\$(PythonVersion)\$(Architecture)"
+      echo "Prepending PATH environment variable with directory: $(Agent.ToolsDirectory)\python\$(PythonVersion)\$(Architecture)\Scripts"
+      echo "Prepending PATH environment variable with directory: $env:APPDATA\Python\Python$(PythonVersion)\Scripts"
     # Run Robot Framework tests
     robot  --xunit output.xml $(System.DefaultWorkingDirectory)\OpenGoogle.robot
   displayName: 'Run Robot Framework script'
+
+steps:
+- script: |
+    echo "Found tool in cache: Python $(PythonVersion) $(Architecture)"
+    echo "Prepending PATH environment variable with directory: $(Agent.ToolsDirectory)\python\$(PythonVersion)\$(Architecture)"
+    echo "Prepending PATH environment variable with directory: $(Agent.ToolsDirectory)\python\$(PythonVersion)\$(Architecture)\Scripts"
+    echo "Prepending PATH environment variable with directory: $env:APPDATA\Python\Python$(PythonVersion)\Scripts"
+  displayName: 'Print Python Tool Cache Details'
 
 - script: |
     python -m pip install --upgrade pip
