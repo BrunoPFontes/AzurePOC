@@ -38,7 +38,6 @@ steps:
     robot  --xunit output.xml $(System.DefaultWorkingDirectory)\OpenGoogle.robot
   displayName: 'Run Robot Framework script'
 
-steps:
 - script: |
     echo "Found tool in cache: Python $(PythonVersion) $(Architecture)"
     echo "Prepending PATH environment variable with directory: $(Agent.ToolsDirectory)\python\$(PythonVersion)\$(Architecture)"
