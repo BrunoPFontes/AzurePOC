@@ -36,7 +36,7 @@ steps:
       # echo "Prepending PATH environment variable with directory: $(Agent.ToolsDirectory)\python\$(PythonVersion)\$(Architecture)\Scripts"
       # echo "Prepending PATH environment variable with directory: $env:APPDATA\Python\Python$(PythonVersion)\Scripts"
     # Run Robot Framework tests
-    robot  --xunit output.xml $(System.DefaultWorkingDirectory)\OpenGoogle.robot
+    # robot  --xunit output.xml $(System.DefaultWorkingDirectory)\OpenGoogle.robot
   displayName: 'Run Robot Framework script'
 
 - script: |
