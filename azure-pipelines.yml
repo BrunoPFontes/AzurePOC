@@ -41,21 +41,21 @@ steps:
   displayName: 'Run Robot Framework script'
 
 - powershell: |
+    Write-Host "Printing the build source at:C:\hostedtoolcache\windows\Python"
     Get-ChildItem -Directory -Path "C:\hostedtoolcache\windows\Python" | ForEach-Object {
         Write-Host $_.Name
     }
+    Write-Host "Printing the build source at:C:\hostedtoolcache\windows\Python\3.12.1"
+    dir -Path "C:\hostedtoolcache\windows\Python"
     Get-ChildItem -Directory -Path "C:\hostedtoolcache\windows\Python\3.12.1" | ForEach-Object {
         Write-Host $_.Name
     }
+    dir -Path  "C:\hostedtoolcache\windows\Python\3.12.1\x64"
+    Write-Host "Printing the build source at:C:\hostedtoolcache\windows\Python\3.12.1\x64"
     Get-ChildItem -Directory -Path "C:\hostedtoolcache\windows\Python\3.12.1\x64" | ForEach-Object {
         Write-Host $_.Name
     }
-    Get-ChildItem -Directory -Path "C:\hostedtoolcache\windows\Python\3.12.1\x64\Scripits" | ForEach-Object {
-        Write-Host $_.Name
-    }
-    Get-ChildItem -Directory -Path "C:\hostedtoolcache\windows\Python\3.12.1\x64\Tools" | ForEach-Object {
-        Write-Host $_.Name
-    }
+    dir -Path "C:\hostedtoolcache\windows\Python\3.12.1\x64"
   displayName: 'List Folders'
 
 - script: |
