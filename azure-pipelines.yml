@@ -21,6 +21,19 @@ steps:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
 
+- powershell: |
+    # Display the path where Git cloned the repository
+      Write-Host "Repository is cloned at: $env:BUILD_SOURCESDIRECTORY"
+      Get-ChildItem C:\a\ recurse
+      Write-Host $env:BUILD_SOURCESDIRECTORY
+      echo "Listing contents of Agent.ToolsDirectory:"
+      dir "$(Agent.ToolsDirectory)"
+      echo $(System.DefaultWorkingDirectory)
+      dir $(System.DefaultWorkingDirectory)
+    # Run Robot Framework tests
+    robot  --xunit output.xml $(System.DefaultWorkingDirectory)\OpenGoogle.robot
+  displayName: 'Run Robot Framework script'
+
 - script: |
     python -m pip install --upgrade pip
     pip install robotframework
