@@ -20,7 +20,19 @@ steps:
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
-  
+
+- powershell: |
+    $pythonCachePath = "$env:AGENT_TOOLSDIRECTORY\Python"
+    if (Test-Path $pythonCachePath) {
+        Write-Host "Python found in tool cache."
+        Get-ChildItem -Path $pythonCachePath -Filter "python.exe" -Recurse | ForEach-Object {
+            Write-Host "Found Python executable at: $($_.FullName)"
+        }
+    } else {
+        Write-Warning "Python not found in tool cache."
+    }
+  displayName: 'Check Python in Tool Cache'
+
 
 - powershell: |
     # Display the path where Git cloned the repository
