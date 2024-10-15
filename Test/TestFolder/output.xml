@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<robot generator="Robot 6.1.1 (Python 3.12.1 on win32)" generated="20231228 12:37:18.773" rpa="false" schemaversion="4">
+<suite id="s1" name="OpenGoogle" source="C:\Users\bruno\OneDrive\Documentos\AzurePOC\Test\TestFolder\OpenGoogle.robot">
+<test id="s1-t1" name="Open Chrome" line="5">
+<kw name="Open Browser" library="SeleniumLibrary">
+<arg>https://www.google.com</arg>
+<arg>Chrome</arg>
+<doc>Opens a new browser instance to the optional ``url``.</doc>
+<msg timestamp="20231228 12:37:19.009" level="INFO">Opening browser 'Chrome' to base url 'https://www.google.com'.</msg>
+<status status="PASS" starttime="20231228 12:37:19.009" endtime="20231228 12:37:21.463"/>
+</kw>
+<kw name="Title Should Be" library="SeleniumLibrary">
+<arg>Google</arg>
+<doc>Verifies that the current page title equals ``title``.</doc>
+<msg timestamp="20231228 12:37:21.470" level="INFO">Page title is 'Google'.</msg>
+<status status="PASS" starttime="20231228 12:37:21.464" endtime="20231228 12:37:21.470"/>
+</kw>
+<status status="PASS" starttime="20231228 12:37:19.008" endtime="20231228 12:37:21.470"/>
+</test>
+<status status="PASS" starttime="20231228 12:37:18.775" endtime="20231228 12:37:21.472"/>
+</suite>
+<statistics>
+<total>
+<stat pass="1" fail="0" skip="0">All Tests</stat>
+</total>
+<tag>
+</tag>
+<suite>
+<stat pass="1" fail="0" skip="0" id="s1" name="OpenGoogle">OpenGoogle</stat>
+</suite>
+</statistics>
+<errors>
+</errors>
+</robot>
